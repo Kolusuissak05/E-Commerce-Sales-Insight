@@ -21,8 +21,7 @@ Responsive Design: Fully adaptive UI using Tailwind CSS grid and flexbox systems
 🚀 Live Demo
 
 View Live Dashboard
-file:///C:/Users/kolus/Desktop/E-Commerce-Insights-Project_Ref/index.html
-
+ https://127.0.0.1:8081
 
 🛠️ Technologies Used
 
