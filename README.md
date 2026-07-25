@@ -1,101 +1,80 @@
-# E-Commerce Sales Insights & Analytics Dashboard
+# E-Commerce Sales Insights for Revenue Growth
 
-## 📌 Project Overview
+An end-to-end analysis of Indian e-commerce sales data (Apr 2018 – Mar 2019), covering revenue, profitability, regional performance, and category trends — built with SQL, Excel, and Power BI.
 
-This is a lightweight, high-performance Analytics Dashboard built entirely with Vanilla JavaScript, HTML5, and Tailwind CSS.
+## 📊 Overview
 
-It simulates a complete e-commerce data workflow—from generating raw transaction data to processing SQL-like queries and rendering interactive visualizations—all within the browser, requiring no backend and no build steps.
+This project analyzes 500 orders (1,500 line items) across 3 product categories and 19 Indian states, identifying revenue drivers, profitability patterns, and performance against monthly sales targets.
 
-## 🎯 Key Features
+**Key findings:**
+- Apr–Sep 2018 ran at a loss almost every month; profitability reversed sharply from Oct 2018 onward, peaking in Jan–Mar 2019
+- Electronics leads revenue (₹1.65L) but Clothing has the better profit margin (8.0% vs 6.3%)
+- Madhya Pradesh and Maharashtra together drive ~46% of total revenue
+- Electronics hit its monthly sales target 75% of the time; Clothing only 25%
 
-* **Zero-Dependency Architecture:** Runs instantly in any modern browser without `npm install` or node modules.
-* **Dynamic Data Engine:** Generates realistic mock sales data (Dates, Products, Regions, Revenue) on the fly using JavaScript.
-* **SQL Query Simulator:** A functional interface to filter data (e.g., `SELECT * FROM Sales WHERE Region = 'North'`) using array prototypes.
-* **Interactive Visualizations:** Custom-built SVG charts for Sales Trends and Top Products (no external charting libraries used).
-* **Responsive Design:** Fully adaptive UI using Tailwind CSS grid and flexbox systems.
+## 🗂️ Repository Structure
+├── data/
+│ ├── raw/
+│ │ ├── List_of_Orders.csv # Original data, as downloaded from Kaggle
+│ │ ├── Order_Details.csv
+│ │ └── Sales_target.csv
+│ └── cleaned/
+│ ├── List_of_Orders_clean.csv # Cleaned order-level data (500 orders)
+│ ├── Order_Details_clean.csv # Cleaned line-item data (1,500 rows)
+│ └── Sales_target_clean.csv # Monthly sales targets by category
+├── sql/
+│ └── queries.sql # All SQL analysis queries (joins, KPIs, trends)
+├── excel/
+│ └── Ecommerce_Sales_Insights.xlsx # Formula-driven Excel dashboard with KPIs & charts
+├── powerbi/
+│ └── Ecommerce_Dashboard.pbix # Power BI report (3 pages)
+└── README.md
+## 🛠️ Tools & Skills Used
+- **SQL** (SQLite/MySQL) — joins, aggregations, KPI calculations
+- **Excel** — PivotTables, SUMIF/INDEX-MATCH formulas, KPI dashboard, charts
+- **Power BI** — data modeling, DAX measures, interactive report with slicers
 
-## 🚀 Live Demo
+## 📈 Data Source
+Indian E-Commerce Sales dataset ([Kaggle](https://www.kaggle.com/datasets/benroshan/ecommerce-data)), consisting of three linked tables: Orders, Order Details, and Sales Targets. Original files are in `data/raw`; cleaned versions (nulls/blank rows removed) are in `data/cleaned`.
 
-View Live Dashboard:
+## 🔍 SQL Analysis
+See `sql/queries.sql` for the full set of queries, covering:
+- Overall KPIs (Total Revenue, Profit, AOV)
+- Monthly revenue & profit trends
+- Top sub-categories and categories by revenue/profit
+- Regional (state-level) performance
+- Top customers by revenue
+- Sales target vs. actual, by month and category
 
-[http://127.0.0.1:8081](http://127.0.0.1:8081)
+## 📗 Excel Dashboard
+`excel/Ecommerce_Sales_Insights.xlsx` contains raw data sheets plus a live, formula-driven Dashboard sheet (SUMIF/INDEX-MATCH — not pasted values) with KPI cards and 4 charts.
 
-## 🛠️ Technologies Used
+## 📊 Power BI Dashboard
+A 3-page interactive report:
+1. **Executive Overview** — KPI cards, monthly revenue/profit trend, category revenue
+2. **Product & Regional Performance** — top sub-categories, states, customers, target vs. actual
+3. **Key Insights** — written findings with supporting visuals and a state revenue map
 
-* **Frontend Core:** HTML5, CSS3, Vanilla JavaScript (ES6+)
-* **Styling:** Tailwind CSS (Loaded via CDN for rapid styling)
-* **Icons:** Lucide Icons (Via CDN)
-* **Data Logic:** JavaScript `map`, `filter`, `reduce` for aggregation and mock SQL processing
-* **Visualization:** Native SVG manipulation for lightweight charting
+Filterable by **Year**, **Month**, **State**, and **Category** via synced slicers.
 
-## 📂 Project Structure
+## 🚀 How to Reproduce This Project
 
-This project is designed to be monolithic for ease of deployment and testing.
+### 1. SQL
+1. Install MySQL Workbench or use SQLite.
+2. Create the database and import the three CSVs from `/data/cleaned` into matching tables.
+3. Run the queries in `sql/queries.sql`.
 
-```
-├── index.html       # Contains structure, styles (Tailwind), and logic (JavaScript)
-├── README.md        # Documentation
-└── data.csv         # (Optional) Static export of the dataset for reference
-```
+### 2. Excel
+1. Open `excel/Ecommerce_Sales_Insights.xlsx`.
+2. Explore the `Dashboard` sheet — all values are live formulas over the raw data sheets.
 
-## 💻 How to Run Locally
+### 3. Power BI
+1. Install Power BI Desktop (free).
+2. Open `powerbi/Ecommerce_Dashboard.pbix`.
+3. Click **Refresh** to reload data if needed.
+4. Explore using the Year/Month/State/Category slicers.
 
-Since this version uses standard web technologies without a build process, running it is incredibly simple.
+## 📌 Author
+**Issak Kolusu** — [LinkedIn](https://linkedin.com/in/issak-kolusu) · [GitHub](https://github.com/Kolusuissak05)
 
-### Clone the repository
 
-```
-git clone https://github.com/your-username/ecommerce-dashboard.git
-```
-
-### Open the file
-
-* Simply double-click `index.html` to open it in your default browser
-
-OR (Recommended)
-
-* Use the **Live Server** extension in VS Code to run it on a local server
-
-No `npm install` or setup required.
-
-## 📊 Analytics Logic Implemented
-
-The application performs real-time calculations directly in the browser.
-
-### KPI Calculation
-
-* **Total Revenue** = Sum(Order Total)
-* **Average Order Value (AOV)** = Total Revenue / Count(Orders)
-
-### Trend Analysis
-
-* Aggregates data by Month-Year keys to plot line charts
-
-### SQL Simulation
-
-* Translates `WHERE` clauses into JavaScript `Array.filter()` functions
-* Translates `ORDER BY` clauses into `Array.sort()` functions
-
-## 📷 Screenshots
-
-### 1. Executive Dashboard
-
-Real-time view of revenue trends and top products.
-
-(Add a screenshot of your dashboard here)
-
-### 2. SQL Data Explorer
-
-Interface for querying raw transaction logs.
-
-(Add a screenshot of the data tab here)
-
-## 🤝 Contributing
-
-Contributions are welcome. Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
